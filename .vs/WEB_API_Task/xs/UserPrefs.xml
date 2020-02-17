@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{B25D8995-82F5-4B62-9741-C7C6675F8725}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/PostController.cs">
+    <Files>
+      <File FileName="Controllers/APIControllers.cs" Line="144" Column="39" />
+      <File FileName="Controllers/CommentController.cs" Line="9" Column="2" />
+      <File FileName="Controllers/PostController.cs" Line="168" Column="2" />
+      <File FileName="Model/User.cs" Line="39" Column="1" NotebookId="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="WEB_API_Task" expanded="True">
+            <Node name="WEB_API_Task" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers" expanded="True">
+                <Node name="PostController.cs" selected="True" />
+              </Node>
+              <Node name="Model" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.WEB__API__Task PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
