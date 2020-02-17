@@ -90,5 +90,13 @@ namespace WEB_API_Task.Controllers
         {
             return Ok(Post.RemoveAll(k => k.Id == id));
         }
+
+        [HttpPatch("{id}")]
+        public IActionResult PatchById(Posts post)
+        {
+            Post.RemoveAll(x => x.Id == post.Id);
+            Post.Add(post);
+            return Ok(Post);
+        }
     }
 }

@@ -78,5 +78,13 @@ namespace WEB_API_Task.Controllers
         {
             return Ok(Author.RemoveAll(k => k.Id == id));
         }
+
+        [HttpPatch("{id}")]
+        public IActionResult PatchById(Authors author)
+        {
+            Author.RemoveAll(x => x.Id == author.Id);
+            Author.Add(author);
+            return Ok(Author);
+        }
     }
 }

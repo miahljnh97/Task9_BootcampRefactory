@@ -89,5 +89,12 @@ namespace WEB_API_Task.Controllers
         {
             return Ok(Comment.RemoveAll(k => k.Id == id));
         }
-    }
+
+        [HttpPatch("{id}")]
+        public IActionResult PatchById(Comments comment)
+        {
+            Comment.RemoveAll(x => x.Id == comment.Id);
+            Comment.Add(comment);
+            return Ok(Comment);
+        }
 }

@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{B25D8995-82F5-4B62-9741-C7C6675F8725}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/PostController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AuthorController.cs">
     <Files>
-      <File FileName="Controllers/APIControllers.cs" Line="144" Column="39" />
-      <File FileName="Controllers/CommentController.cs" Line="9" Column="2" />
-      <File FileName="Controllers/PostController.cs" Line="168" Column="2" />
+      <File FileName="Controllers/APIControllers.cs" Line="87" Column="29" />
+      <File FileName="Controllers/CommentController.cs" Line="93" Column="1" />
+      <File FileName="Controllers/PostController.cs" Line="99" Column="27" />
       <File FileName="Model/User.cs" Line="39" Column="1" NotebookId="1" />
     </Files>
     <Pads>
@@ -13,7 +13,7 @@
             <Node name="WEB_API_Task" expanded="True">
               <Node name="Dependencies" expanded="True" />
               <Node name="Controllers" expanded="True">
-                <Node name="PostController.cs" selected="True" />
+                <Node name="AuthorController.cs" selected="True" />
               </Node>
               <Node name="Model" expanded="True" />
             </Node>
