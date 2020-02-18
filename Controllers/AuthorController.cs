@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using static WEB_API_Task.Model.User;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace WEB_API_Task.Controllers
 {
@@ -79,45 +80,52 @@ namespace WEB_API_Task.Controllers
             return Ok(Author.RemoveAll(k => k.Id == id));
         }
 
+        //[HttpPatch("{id}")]
+        //public IActionResult PatchById(Authors author, int id)
+        //{
+        //    Authors A = Author.Where(k => k.Id == id).First();
+        //    int index = Author.IndexOf(A);
+        //    if (author.Id == 0)
+        //    {
+        //        author.Id = A.Id;
+        //    }
+        //    if (author.Username == null)
+        //    {
+        //        author.Username = A.Username;
+        //    }
+        //    if (author.Password == null)
+        //    {
+        //        author.Password = A.Password;
+        //    }
+        //    if (author.Salt == null)
+        //    {
+        //        author.Salt = A.Salt;
+        //    }
+        //    if (author.Email == null)
+        //    {
+        //        author.Email = A.Email;
+        //    }
+        //    if (author.Profile == null)
+        //    {
+        //        author.Profile = A.Profile;
+        //    }
+        //   Author[index] = new Authors()
+        //    {
+        //        Id = author.Id,
+        //        Username = author.Username,
+        //        Password = author.Password,
+        //        Salt = author.Salt,
+        //        Email = author.Email,
+        //        Profile = author.Profile
+        //    };
+        //    return Ok(Author);
+        //}
+
         [HttpPatch("{id}")]
-        public IActionResult PatchById(Authors author, int id)
+        public IActionResult PatchbyId(int id, [FromBody]JsonPatchDocument<Authors> patchAuthor)
         {
-            Authors A = Author.Where(k => k.Id == id).First();
-            int index = Author.IndexOf(A);
-            if (author.Id == 0)
-            {
-                author.Id = A.Id;
-            }
-            if (author.Username == null)
-            {
-                author.Username = A.Username;
-            }
-            if (author.Password == null)
-            {
-                author.Password = A.Password;
-            }
-            if (author.Salt == null)
-            {
-                author.Salt = A.Salt;
-            }
-            if (author.Email == null)
-            {
-                author.Email = A.Email;
-            }
-            if (author.Profile == null)
-            {
-                author.Profile = A.Profile;
-            }
-           Author[index] = new Authors()
-            {
-                Id = author.Id,
-                Username = author.Username,
-                Password = author.Password,
-                Salt = author.Salt,
-                Email = author.Email,
-                Profile = author.Profile
-            };
-            return Ok(Author);
+            patchAuthor.ApplyTo(Author.Find(e => e.Id == id));
+            return Ok(Author.Find(e => e.Id == id));
         }
     }
 }

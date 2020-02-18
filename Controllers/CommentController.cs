@@ -84,7 +84,7 @@ namespace WEB_API_Task.Controllers
             return Ok(Comment.RemoveAll(k => k.Id == id));
         }
 
-        [HttpPatch]
+        //[HttpPatch("{id}")]
         //public IActionResult CommentPatch([FromBody] JsonPatchDocument<Comments> patchComment, int id)
         //{
         //    if (patchComment != null)
@@ -112,51 +112,59 @@ namespace WEB_API_Task.Controllers
         //    return Ok(Comment);
         //}
 
-        [HttpPatch("{id}")]
-        public IActionResult PatchById(Comments comment, int id)
-        {
-            Comments A = Comment.Where(k => k.Id == id).First();
-            int index = Comment.IndexOf(A);
-            if (comment.Id == 0)
-            {
-                comment.Id = A.Id;
-            }
-            if (comment.Content == null)
-            {
-                comment.Content = A.Content;
-            }
-            if (comment.Status == null)
-            {
-                comment.Status = A.Status;
-            }
-            if (comment.Author_id == 0)
-            {
-                comment.Author_id = A.Author_id;
-            }
-            if (comment.Email == null)
-            {
-                comment.Email = A.Email;
-            }
-            if (comment.Url == null)
-            {
-                comment.Url = A.Url;
-            }
-            if (comment.Post_id == 0)
-            {
-                comment.Post_id = A.Post_id;
-            }
+        //[HttpPatch("{id}")]
+        //public IActionResult PatchById(Comments comment, int id)
+        //{
+        //    Comments A = Comment.Where(k => k.Id == id).First();
+        //    int index = Comment.IndexOf(A);
+        //    if (comment.Id == 0)
+        //    {
+        //        comment.Id = A.Id;
+        //    }
+        //    if (comment.Content == null)
+        //    {
+        //        comment.Content = A.Content;
+        //    }
+        //    if (comment.Status == null)
+        //    {
+        //        comment.Status = A.Status;
+        //    }
+        //    if (comment.Author_id == 0)
+        //    {
+        //        comment.Author_id = A.Author_id;
+        //    }
+        //    if (comment.Email == null)
+        //    {
+        //        comment.Email = A.Email;
+        //    }
+        //    if (comment.Url == null)
+        //    {
+        //        comment.Url = A.Url;
+        //    }
+        //    if (comment.Post_id == 0)
+        //    {
+        //        comment.Post_id = A.Post_id;
+        //    }
 
-            Comment[index] = new Comments()
-            {
-                Id = comment.Id,
-                Content = comment.Content,
-                Status = comment.Status,
-                Author_id = comment.Author_id,
-                Email = comment.Email,
-                Url = comment.Url,
-                Post_id = comment.Post_id
-            };
-            return Ok(Comment);
+        //    Comment[index] = new Comments()
+        //    {
+        //        Id = comment.Id,
+        //        Content = comment.Content,
+        //        Status = comment.Status,
+        //        Author_id = comment.Author_id,
+        //        Email = comment.Email,
+        //        Url = comment.Url,
+        //        Post_id = comment.Post_id
+        //    };
+        //    return Ok(Comment);
+        //}
+
+        [HttpPatch("{id}")]
+        public IActionResult PatchbyId(int id, [FromBody]JsonPatchDocument<Comments> patchComment)
+        {
+            patchComment.ApplyTo(Comment.Find(e => e.Id == id));
+            return Ok(Comment.Find(e => e.Id == id));
+
         }
     }
 }
