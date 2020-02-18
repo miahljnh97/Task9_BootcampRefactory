@@ -1,9 +1,13 @@
 ﻿<Properties StartupConfiguration="{B25D8995-82F5-4B62-9741-C7C6675F8725}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/AuthorController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="App.log">
     <Files>
-      <File FileName="Controllers/AuthorController.cs" Line="122" Column="12" />
-      <File FileName="Controllers/PostController.cs" Line="154" Column="27" />
-      <File FileName="Controllers/CommentController.cs" Line="167" Column="1" />
+      <File FileName="Controllers/AuthorController.cs" Line="54" Column="44" />
+      <File FileName="Controllers/PostController.cs" Line="64" Column="13" />
+      <File FileName="Controllers/CommentController.cs" Line="70" Column="48" />
+      <File FileName="Middleware/AuthMiddleware.cs" Line="33" Column="36" />
+      <File FileName="App.log" Line="1" Column="1" />
+      <File FileName="Startup.cs" Line="9" Column="2" />
+      <File FileName="Program.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -11,10 +15,10 @@
           <Node name="WEB_API_Task" expanded="True">
             <Node name="WEB_API_Task" expanded="True">
               <Node name="Dependencies" expanded="True" />
-              <Node name="Controllers" expanded="True">
-                <Node name="AuthorController.cs" selected="True" />
-              </Node>
+              <Node name="Controllers" expanded="True" />
+              <Node name="Middleware" expanded="True" />
               <Node name="Model" expanded="True" />
+              <Node name="App.log" selected="True" />
             </Node>
           </Node>
         </State>

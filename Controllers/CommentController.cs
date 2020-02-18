@@ -4,8 +4,8 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using static WEB_API_Task.Model.User;
-using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.AspNetCore.JsonPatch;
+using WEB_API_Task.Middleware;
 
 namespace WEB_API_Task.Controllers
 {
@@ -52,116 +52,35 @@ namespace WEB_API_Task.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            Log1.PopulateLog("Get Comment");
             return Ok(Comment);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
+            Log1.PopulateLog($"Get Comment Id = {id}");
             return Ok(Comment.First(k => k.Id == id));
         }
 
         [HttpPost]
         public IActionResult CommentAdd(Comments comment)
         {
-            var commentAdd = new Comments()
-            {
-                Id = comment.Id,
-                Content = comment.Content,
-                Status = comment.Status,
-                Author_id = comment.Author_id,
-                Email = comment.Email,
-                Url = comment.Url,
-                Post_id = comment.Post_id
-            };
-            Comment.Add(commentAdd);
-            return Ok(Comment);
+            Log1.PopulateLog("Add Post");
+            return Ok(Comment.Append(comment));
         }
 
         [HttpDelete]
         public IActionResult DeleteComment(int id)
         {
+            Log1.PopulateLog($"Delete Comment Id = {id}");
             return Ok(Comment.RemoveAll(k => k.Id == id));
         }
-
-        //[HttpPatch("{id}")]
-        //public IActionResult CommentPatch([FromBody] JsonPatchDocument<Comments> patchComment, int id)
-        //{
-        //    if (patchComment != null)
-        //    {
-        //        var Com = new Comments();
-        //        patchComment.ApplyTo(Com, ModelState);
-
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return BadRequest(ModelState);
-        //        }
-
-        //        return new ObjectResult(Com);
-        //    }
-        //    else
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-        //}
-
-        //public IActionResult PatchById(Comments comment)
-        //{
-        //    Comment.RemoveAll(x => x.Id == comment.Id);
-        //    Comment.Add(comment);
-        //    return Ok(Comment);
-        //}
-
-        //[HttpPatch("{id}")]
-        //public IActionResult PatchById(Comments comment, int id)
-        //{
-        //    Comments A = Comment.Where(k => k.Id == id).First();
-        //    int index = Comment.IndexOf(A);
-        //    if (comment.Id == 0)
-        //    {
-        //        comment.Id = A.Id;
-        //    }
-        //    if (comment.Content == null)
-        //    {
-        //        comment.Content = A.Content;
-        //    }
-        //    if (comment.Status == null)
-        //    {
-        //        comment.Status = A.Status;
-        //    }
-        //    if (comment.Author_id == 0)
-        //    {
-        //        comment.Author_id = A.Author_id;
-        //    }
-        //    if (comment.Email == null)
-        //    {
-        //        comment.Email = A.Email;
-        //    }
-        //    if (comment.Url == null)
-        //    {
-        //        comment.Url = A.Url;
-        //    }
-        //    if (comment.Post_id == 0)
-        //    {
-        //        comment.Post_id = A.Post_id;
-        //    }
-
-        //    Comment[index] = new Comments()
-        //    {
-        //        Id = comment.Id,
-        //        Content = comment.Content,
-        //        Status = comment.Status,
-        //        Author_id = comment.Author_id,
-        //        Email = comment.Email,
-        //        Url = comment.Url,
-        //        Post_id = comment.Post_id
-        //    };
-        //    return Ok(Comment);
-        //}
 
         [HttpPatch("{id}")]
         public IActionResult PatchbyId(int id, [FromBody]JsonPatchDocument<Comments> patchComment)
         {
+            Log1.PopulateLog($"Update Comment Id = {id}");
             patchComment.ApplyTo(Comment.Find(e => e.Id == id));
             return Ok(Comment.Find(e => e.Id == id));
 

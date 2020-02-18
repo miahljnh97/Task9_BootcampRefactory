@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using static WEB_API_Task.Model.User;
 using Microsoft.AspNetCore.JsonPatch;
+using WEB_API_Task.Middleware;
 
 namespace WEB_API_Task.Controllers
 {
@@ -50,80 +51,35 @@ namespace WEB_API_Task.Controllers
         [HttpGet]
         public IActionResult AuthorGet()
         {
+            Log1.PopulateLog("Get Author");
             return Ok(Author);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
+            Log1.PopulateLog($"Get Author Id = {id}");
             return Ok(Author.First(k => k.Id == id));
         }
 
         [HttpPost]
         public IActionResult AuthorAdd(Authors author)
         {
-            var authorAdd = new Authors()
-            {   Id = author.Id,
-                Username = author.Username,
-                Password = author.Password,
-                Salt = author.Salt,
-                Email = author.Email,
-                Profile = author.Profile };
-            Author.Add(authorAdd);
-
-            return Ok(Author);
+            Log1.PopulateLog("Add Author");
+            return Ok(Author.Append(author));
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult DeleteAuthor(int id)
         {
+            Log1.PopulateLog($"Delete Author Id = {id}");
             return Ok(Author.RemoveAll(k => k.Id == id));
         }
-
-        //[HttpPatch("{id}")]
-        //public IActionResult PatchById(Authors author, int id)
-        //{
-        //    Authors A = Author.Where(k => k.Id == id).First();
-        //    int index = Author.IndexOf(A);
-        //    if (author.Id == 0)
-        //    {
-        //        author.Id = A.Id;
-        //    }
-        //    if (author.Username == null)
-        //    {
-        //        author.Username = A.Username;
-        //    }
-        //    if (author.Password == null)
-        //    {
-        //        author.Password = A.Password;
-        //    }
-        //    if (author.Salt == null)
-        //    {
-        //        author.Salt = A.Salt;
-        //    }
-        //    if (author.Email == null)
-        //    {
-        //        author.Email = A.Email;
-        //    }
-        //    if (author.Profile == null)
-        //    {
-        //        author.Profile = A.Profile;
-        //    }
-        //   Author[index] = new Authors()
-        //    {
-        //        Id = author.Id,
-        //        Username = author.Username,
-        //        Password = author.Password,
-        //        Salt = author.Salt,
-        //        Email = author.Email,
-        //        Profile = author.Profile
-        //    };
-        //    return Ok(Author);
-        //}
 
         [HttpPatch("{id}")]
         public IActionResult PatchbyId(int id, [FromBody]JsonPatchDocument<Authors> patchAuthor)
         {
+            Log1.PopulateLog($"Update Author Id= {id}");
             patchAuthor.ApplyTo(Author.Find(e => e.Id == id));
             return Ok(Author.Find(e => e.Id == id));
         }

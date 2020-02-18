@@ -1,5 +1,4 @@
-﻿using System;
-namespace WEB_API_Task.Model
+﻿namespace WEB_API_Task.Model
 {
     public class User
     {
