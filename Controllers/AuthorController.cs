@@ -47,7 +47,7 @@ namespace WEB_API_Task.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult AuthorGet()
         {
             return Ok(Author);
         }
@@ -80,10 +80,43 @@ namespace WEB_API_Task.Controllers
         }
 
         [HttpPatch("{id}")]
-        public IActionResult PatchById(Authors author)
+        public IActionResult PatchById(Authors author, int id)
         {
-            Author.RemoveAll(x => x.Id == author.Id);
-            Author.Add(author);
+            Authors A = Author.Where(k => k.Id == id).First();
+            int index = Author.IndexOf(A);
+            if (author.Id == 0)
+            {
+                author.Id = A.Id;
+            }
+            if (author.Username == null)
+            {
+                author.Username = A.Username;
+            }
+            if (author.Password == null)
+            {
+                author.Password = A.Password;
+            }
+            if (author.Salt == null)
+            {
+                author.Salt = A.Salt;
+            }
+            if (author.Email == null)
+            {
+                author.Email = A.Email;
+            }
+            if (author.Profile == null)
+            {
+                author.Profile = A.Profile;
+            }
+           Author[index] = new Authors()
+            {
+                Id = author.Id,
+                Username = author.Username,
+                Password = author.Password,
+                Salt = author.Salt,
+                Email = author.Email,
+                Profile = author.Profile
+            };
             return Ok(Author);
         }
     }

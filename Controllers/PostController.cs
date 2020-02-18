@@ -91,11 +91,58 @@ namespace WEB_API_Task.Controllers
             return Ok(Post.RemoveAll(k => k.Id == id));
         }
 
+        //[HttpPatch("{id}")]
+        //public IActionResult PatchById(Posts post)
+        //{
+        //    Post.RemoveAll(x => x.Id == post.Id);
+        //    Post.Add(post);
+        //    return Ok(Post);
+        //}
+
         [HttpPatch("{id}")]
-        public IActionResult PatchById(Posts post)
+        public IActionResult PatchById(Posts post, int id)
         {
-            Post.RemoveAll(x => x.Id == post.Id);
-            Post.Add(post);
+            Posts A = Post.Where(k => k.Id == id).First();
+            int index = Post.IndexOf(A);
+            if (post.Id == 0)
+            {
+                post.Id = A.Id;
+            }
+            if (post.Title == null)
+            {
+                post.Title = A.Title;
+            }
+            if (post.Content == null)
+            {
+                post.Content = A.Content;
+            }
+            if (post.Tags == null)
+            {
+                post.Tags = A.Tags;
+            }
+            if (post.Create_time == null)
+            {
+                post.Create_time = A.Create_time;
+            }
+            if (post.Update_time == null)
+            {
+                post.Update_time = A.Update_time;
+            }
+            if(post.Author_id == 0)
+            {
+                post.Author_id = A.Author_id;
+            }
+
+            Post[index] = new Posts()
+            {
+                Id = post.Id,
+                Title = post.Title,
+                Content = post.Content,
+                Tags = post.Tags,
+                Create_time = post.Create_time,
+                Update_time = post.Update_time,
+                Author_id = post.Author_id
+            };
             return Ok(Post);
         }
     }
