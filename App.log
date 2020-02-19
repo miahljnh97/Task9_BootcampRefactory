@@ -1,1 +1,4 @@
-﻿
+﻿02/19/2020 10:45:52 Started GET /weatherforecast for localhost:5001 
+02/19/2020 10:45:52 Completed 200 /weatherforecast in 51.554 ms 
+02/19/2020 10:45:55 Started GET /weatherforecast for localhost:5001 
+02/19/2020 10:45:55 Completed 200 /weatherforecast in 0.508 ms 

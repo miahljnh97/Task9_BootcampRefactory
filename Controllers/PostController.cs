@@ -61,35 +61,30 @@ namespace WEB_API_Task.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            Log1.PopulateLog("Get Post");
             return Ok(Post);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            Log1.PopulateLog($"Get Post Id = {id}");
             return Ok(Post.First(k => k.Id == id));
         }
 
         [HttpPost]
         public IActionResult PostAdd(Posts post)
         {
-            Log1.PopulateLog("Add Post");
             return Ok(Post.Append(post));
         }
 
         [HttpDelete]
         public IActionResult DeletePost(int id)
         {
-            Log1.PopulateLog($"Delete Post Id = {id}");
             return Ok(Post.RemoveAll(k => k.Id == id));
         }
 
         [HttpPatch("{id}")]
         public IActionResult PatchbyId(int id, [FromBody]JsonPatchDocument<Posts> patchPost)
         {
-            Log1.PopulateLog($"Update Post Id = {id}");
             patchPost.ApplyTo(Post.Find(e => e.Id == id));
             return Ok(Post.Find(e => e.Id == id));
         }

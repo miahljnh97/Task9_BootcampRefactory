@@ -52,35 +52,30 @@ namespace WEB_API_Task.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            Log1.PopulateLog("Get Comment");
             return Ok(Comment);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            Log1.PopulateLog($"Get Comment Id = {id}");
             return Ok(Comment.First(k => k.Id == id));
         }
 
         [HttpPost]
         public IActionResult CommentAdd(Comments comment)
         {
-            Log1.PopulateLog("Add Post");
             return Ok(Comment.Append(comment));
         }
 
         [HttpDelete]
         public IActionResult DeleteComment(int id)
         {
-            Log1.PopulateLog($"Delete Comment Id = {id}");
             return Ok(Comment.RemoveAll(k => k.Id == id));
         }
 
         [HttpPatch("{id}")]
         public IActionResult PatchbyId(int id, [FromBody]JsonPatchDocument<Comments> patchComment)
         {
-            Log1.PopulateLog($"Update Comment Id = {id}");
             patchComment.ApplyTo(Comment.Find(e => e.Id == id));
             return Ok(Comment.Find(e => e.Id == id));
 
